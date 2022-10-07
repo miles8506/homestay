@@ -10,7 +10,8 @@ const Home = memo(() => {
   })
 
   return (
-    <div>Home</div>
+    <div>
+    </div>
   )
 })
 
