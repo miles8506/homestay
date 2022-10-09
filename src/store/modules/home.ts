@@ -1,18 +1,30 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, AsyncThunk } from '@reduxjs/toolkit'
+import { getGoodPriceData } from '@/services/home'
+import { IGoodPriceInfo } from '@/services'
 
 interface IInitialState {
-  count: number
+  goodPriceInfo: IGoodPriceInfo | null
 }
 
 const initialState: IInitialState = {
-  count: 0
+  goodPriceInfo: null
 }
+
+export const requestHomeGoodPrice = createAsyncThunk('homeGoodPrice', async () => {
+  const res = await getGoodPriceData()
+  return res
+})
 
 const homeSlice = createSlice({
   name: 'home',
   initialState,
   reducers: {
 
+  },
+  extraReducers(build) {
+    build.addCase(requestHomeGoodPrice.fulfilled, (state, { payload }) => {
+      state.goodPriceInfo = payload
+    })
   }
 })
 
