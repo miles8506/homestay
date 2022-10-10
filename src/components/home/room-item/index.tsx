@@ -1,12 +1,12 @@
 import { memo, FC } from 'react'
 
-import { IGoodPriceInfoItem } from '@/services'
+import { IHomeInfoItem } from '@/services'
 
 import { RoomItemWrapper } from './style'
 import MSRating from '@/base-ui/ms-rating'
 
 interface IProps {
-  item: IGoodPriceInfoItem
+  item: IHomeInfoItem
 }
 
 const RoomItem: FC<IProps> = memo(({ item }) => {

@@ -1,7 +1,19 @@
 import { msRequest } from ".."
 
-export function getGoodPriceData() {
-  return msRequest.get({
+export function getGoodPriceData<T>() {
+  return msRequest.get<T>({
     url: '/home/goodprice'
+  })
+}
+
+export function getHighScoreData<T>() {
+  return msRequest.get<T>({
+    url: '/home/highscore'
+  })
+}
+
+export function getDiscountData<T>() {
+  return msRequest.get<T>({
+    url: '/home/discount'
   })
 }

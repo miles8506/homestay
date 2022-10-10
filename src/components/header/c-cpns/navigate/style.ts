@@ -29,6 +29,9 @@ export const HeaderNavigateWrapper = styled.div`
     height: 42px;
     border: 1px solid #ccc;
 
+    &:hover {
+      background-color: #fff;
+    }
     ${(props: ThemePropsType) => props.theme.mixin.boxShadow };
   }
 
