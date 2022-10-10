@@ -14,7 +14,6 @@ const theme = {
       transition: box-shadow .4s ease;
       &:hover {
         box-shadow: 0 2px 4px rgb(0 0 0 / 18%);
-        background-color: inherit;
       }
     `
   }

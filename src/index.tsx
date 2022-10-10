@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import { HashRouter } from 'react-router-dom'
 
-import 'antd/dist/antd.css'
+import 'antd/dist/antd.min.css'
 import 'normalize.css'
 import './assets/css/index.scss'
 import ReactDOM from 'react-dom/client'

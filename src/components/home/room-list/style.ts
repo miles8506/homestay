@@ -1,12 +1,16 @@
 import styled from "styled-components"
 
-export const RoomListWrapper = styled.div`
+interface IProps {
+  customWidth: string
+}
+
+export const RoomListWrapper = styled.div<IProps>`
   display: flex;
   flex-wrap: wrap;
   margin: 0 -8px;
 
   .room-item-wrapper {
-    flex: 25%;
+    width: ${props => props.customWidth};
     padding: 8px;
   }
 `
