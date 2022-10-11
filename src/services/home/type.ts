@@ -26,7 +26,7 @@ interface IDestAddress {
   name: string
 }
 
-interface IDestList {
+interface ITabsList {
   bottom_info: any
   id: string
   image_url: string
@@ -43,9 +43,9 @@ interface IDestList {
   verify_info: any
 }
 
-export interface IDiscount {
+export interface ITabs {
   dest_address: IDestAddress[]
-  dest_list: { [key: string]: IDestList[] }
+  dest_list: { [key: string]: ITabsList[] }
   subtitle: string
   title: string
   type: string

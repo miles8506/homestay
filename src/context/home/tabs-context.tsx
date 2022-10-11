@@ -1,9 +1,7 @@
 import {
-  memo,
   createContext,
   useContext,
   useState,
-  FC,
   ReactElement,
   MemoExoticComponent
 } from 'react'
