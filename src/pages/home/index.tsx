@@ -3,35 +3,24 @@ import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 
 import { requestHomeGoodPrice } from '@/store/modules/home'
 import { ReduxDispatchType, ReduxStateType } from '@/store'
-import { useTabsContext } from '@/context/home/tabs-context'
 
 import { HomeWrapper } from './style'
 import Banner from '@/components/home/banner'
 import SectionBaseRoom from '@/components/home/sectoin-base-room'
 import TabsProvider from '@/context/home/tabs-context'
-import Tabs from '@/components/home/tabs'
-
-import SectionHeader from '@/components/home/section-header'
-import RoomList from '@/components/home/room-list'
+import SectionTabsRoom from '@/components/home/section-tabs-room'
 
 const Home = memo(() => {
-  const { goodPriceInfo, highScoreInfo, discountInfo } = useSelector(
+  const { goodPriceInfo, highScoreInfo, discountInfo, recommendInfo } = useSelector(
     (state: ReduxStateType) => ({
       goodPriceInfo: state.home.goodPriceInfo,
       highScoreInfo: state.home.highScoreInfo,
-      discountInfo: state.home.discountInfo
+      discountInfo: state.home.discountInfo,
+      recommendInfo: state.home.recommendInfo
     }),
     shallowEqual
   )
   const dispatch = useDispatch<ReduxDispatchType>()
-  const { tabsIndex } = useTabsContext()
-
-  const tabsName = discountInfo?.dest_address.map(item => item.name)
-  const filterDiscountList = () => {
-    const currentTabName = discountInfo?.dest_address[tabsIndex].name
-    if (!currentTabName) return []
-    return discountInfo?.dest_list[currentTabName]
-  }
 
   useEffect(() => {
     dispatch(requestHomeGoodPrice())
@@ -41,16 +30,10 @@ const Home = memo(() => {
     <HomeWrapper>
       <Banner />
       <div className="content">
-        <div className="discount">
-          <SectionHeader title={discountInfo?.title} subTitle={discountInfo?.subtitle} />
-          <Tabs tabsName={tabsName} />
-          <RoomList
-            list={filterDiscountList()}
-            customWidth='33.33%'
-          />
-        </div>
-        <SectionBaseRoom infoList={goodPriceInfo} />
-        <SectionBaseRoom infoList={highScoreInfo}/>
+        { discountInfo && <SectionTabsRoom infoList={discountInfo} /> }
+        { recommendInfo && <SectionTabsRoom infoList={recommendInfo} /> }
+        { goodPriceInfo && <SectionBaseRoom infoList={goodPriceInfo} /> }
+        { highScoreInfo && <SectionBaseRoom infoList={highScoreInfo}/> }
       </div>
     </HomeWrapper>
   )

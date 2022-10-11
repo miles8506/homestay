@@ -17,3 +17,9 @@ export function getDiscountData<T>() {
     url: '/home/discount'
   })
 }
+
+export function getRecommendData<T>() {
+  return msRequest.get<T>({
+    url: '/home/hotrecommenddest'
+  })
+}
