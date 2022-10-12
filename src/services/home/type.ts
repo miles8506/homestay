@@ -51,3 +51,18 @@ export interface ITabs {
   type: string
   _id: string
 }
+
+export interface ILongFor {
+  city: string
+  image_url: string
+  picture_url: string
+  price: string
+}
+
+export interface ILongForInfo {
+  list: ILongFor[]
+  subtitle: string
+  title: string
+  type: string
+  _id: string
+}

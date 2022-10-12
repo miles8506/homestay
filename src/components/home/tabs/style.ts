@@ -3,8 +3,11 @@ import styled from "styled-components"
 import { ThemePropsType } from "@/theme"
 
 export const TabsWrapper = styled.div<ThemePropsType>`
+  display: flex;
+
   .tabs-item {
-    min-width: 120px;
+    flex-basis: 120px;
+    flex-shrink: 0;
     margin-right: 16px;
     padding: 14px 16px;
     border: 0.5px solid #D8D8D8;
@@ -13,6 +16,7 @@ export const TabsWrapper = styled.div<ThemePropsType>`
     font-size: 17px;
     text-align: center;
     cursor: pointer;
+    white-space: nowrap;
 
     ${props => props.theme.mixin.boxShadow}
   }

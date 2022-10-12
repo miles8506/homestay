@@ -5,20 +5,22 @@ import {
   getDiscountData,
   getRecommendData
 } from '@/services/home'
-import { IHomeInfo, ITabs } from '@/services'
+import { getLongForData, IHomeInfo, ILongForInfo, ITabs } from '@/services'
 
 interface IInitialState {
   goodPriceInfo: IHomeInfo | null
   highScoreInfo: IHomeInfo | null
   discountInfo: ITabs | null
   recommendInfo: ITabs | null
+  longForInfo: ILongForInfo | null
 }
 
 const initialState: IInitialState = {
   goodPriceInfo: null,
   highScoreInfo: null,
   discountInfo: null,
-  recommendInfo: null
+  recommendInfo: null,
+  longForInfo: null
 }
 
 export const requestHomeGoodPrice = createAsyncThunk(
@@ -28,6 +30,7 @@ export const requestHomeGoodPrice = createAsyncThunk(
     getHighScoreData<IHomeInfo>().then((res) => dispatch(setHighScoreInfo(res)))
     getDiscountData<ITabs>().then((res) => dispatch(setDiscountInfo(res)))
     getRecommendData<ITabs>().then((res) => dispatch(setRecommendInfo(res)))
+    getLongForData<ILongForInfo[]>().then(res => dispatch(setLongForInfo(res)))
   }
 )
 
@@ -46,6 +49,9 @@ const homeSlice = createSlice({
     },
     setRecommendInfo(state, { payload }) {
       state.recommendInfo = payload
+    },
+    setLongForInfo(state, { payload }) {
+      state.longForInfo = payload
     }
   }
   // extraReducers(build) {
@@ -56,5 +62,5 @@ const homeSlice = createSlice({
 })
 
 export default homeSlice.reducer
-export const { setGoodPriceInfo, setHighScoreInfo, setDiscountInfo, setRecommendInfo } =
+export const { setGoodPriceInfo, setHighScoreInfo, setDiscountInfo, setRecommendInfo, setLongForInfo } =
   homeSlice.actions
