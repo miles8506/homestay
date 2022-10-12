@@ -23,3 +23,9 @@ export function getRecommendData<T>() {
     url: '/home/hotrecommenddest'
   })
 }
+
+export function getLongForData<T>() {
+  return msRequest.get<T>({
+    url: '/home/longfor'
+  })
+}
