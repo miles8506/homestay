@@ -10,15 +10,17 @@ import SectionBaseRoom from '@/components/home/sectoin-base-room'
 import TabsProvider from '@/context/home/tabs-context'
 import SectionTabsRoom from '@/components/home/section-tabs-room'
 import SectionLongFor from '@/components/home/section-long-for'
+import SectionPlusRoom from '@/components/home/section-plus-room'
 
 const Home = memo(() => {
-  const { goodPriceInfo, highScoreInfo, discountInfo, recommendInfo, longForInfo } = useSelector(
+  const { goodPriceInfo, highScoreInfo, discountInfo, recommendInfo, longForInfo, homePlusInfo } = useSelector(
     (state: ReduxStateType) => ({
       goodPriceInfo: state.home.goodPriceInfo,
       highScoreInfo: state.home.highScoreInfo,
       discountInfo: state.home.discountInfo,
       recommendInfo: state.home.recommendInfo,
-      longForInfo: state.home.longForInfo
+      longForInfo: state.home.longForInfo,
+      homePlusInfo: state.home.homePlusInfo
     }),
     shallowEqual
   )
@@ -32,11 +34,12 @@ const Home = memo(() => {
     <HomeWrapper>
       <Banner />
       <div className="content">
-        {discountInfo && <SectionTabsRoom infoList={discountInfo} /> }
+        {discountInfo && <SectionTabsRoom infoList={discountInfo} />}
         {recommendInfo && <SectionTabsRoom infoList={recommendInfo} />}
         {longForInfo && <SectionLongFor infoList={longForInfo} />}
-        {goodPriceInfo && <SectionBaseRoom infoList={goodPriceInfo} /> }
-        {highScoreInfo && <SectionBaseRoom infoList={highScoreInfo}/> }
+        {goodPriceInfo && <SectionBaseRoom infoList={goodPriceInfo} />}
+        {highScoreInfo && <SectionBaseRoom infoList={highScoreInfo} />}
+        {homePlusInfo && <SectionPlusRoom infoList={homePlusInfo} />}
       </div>
     </HomeWrapper>
   )
