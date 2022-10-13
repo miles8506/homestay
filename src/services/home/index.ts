@@ -29,3 +29,9 @@ export function getLongForData<T>() {
     url: '/home/longfor'
   })
 }
+
+export function getHomePlus<T>() {
+  return msRequest.get<T>({
+    url: '/home/plus'
+  })
+}
