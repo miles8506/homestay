@@ -1,0 +1,2 @@
+export const ENTIRE_LIST = 'ENTIRE_LIST'
+export const ENTIRE_TOTAL_COUNT = 'ENTIRE_TOTAL_COUNT'

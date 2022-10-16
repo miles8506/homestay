@@ -1,3 +1,5 @@
 export { default as msRequest } from './request'
 export * from './home'
 export * from './home/type'
+export * from './entire'
+export * from './entire/type'

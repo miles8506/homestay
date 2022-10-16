@@ -4,7 +4,7 @@ import { IHomeInfo } from '@/services'
 
 import { SectionRoomWrapper } from './style'
 import SectionHeader from '../section-header'
-import RoomList from '../room-list'
+import RoomList from '../../common/room-list'
 import SectionFooter from '../section-footer'
 
 interface IProps {
