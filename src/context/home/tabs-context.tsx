@@ -3,7 +3,8 @@ import {
   useContext,
   useState,
   ReactElement,
-  MemoExoticComponent
+  MemoExoticComponent,
+  FC
 } from 'react'
 
 interface ITabs {
@@ -15,8 +16,8 @@ const TabsContext = createContext<ITabs>({} as ITabs)
 
 export const useTabsContext = () => useContext(TabsContext)
 
-const TabsProvider = function (OriginCpn: MemoExoticComponent<() => ReactElement>) {
-  return function() {
+const TabsProvider = function <IProps>(OriginCpn: MemoExoticComponent<() => ReactElement> | FC<IProps>) {
+  return function(props: any) {
     const [tabsIndex, setTabsIndex] = useState(0)
     const changeTabIndex = (index: number) => setTabsIndex(index)
 
@@ -27,7 +28,7 @@ const TabsProvider = function (OriginCpn: MemoExoticComponent<() => ReactElement
           changeTabIndex
         }}
       >
-        <OriginCpn />
+        <OriginCpn {...props} />
       </TabsContext.Provider>
     )
   }

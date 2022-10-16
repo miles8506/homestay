@@ -5,7 +5,7 @@ import { IHomeInfo } from '@/services'
 import { SectionPlusRoomWrapper } from './style'
 import SectionHeader from '../section-header'
 import SectionFooter from '../section-footer'
-import RoomItem from '../room-item'
+import RoomItem from '../../common/room-item'
 import ScrollView from '@/base-ui/scroll-view'
 
 interface IProps {

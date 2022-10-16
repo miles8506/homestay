@@ -4,10 +4,11 @@ import { ITabs } from '@/services'
 import { useTabsContext } from '@/context/home/tabs-context'
 
 import { SectionTabsRoomWrapper } from './style'
-import RoomList from '../room-list'
+import RoomList from '../../common/room-list'
 import SectionHeader from '../section-header'
 import Tabs from '../tabs'
 import SectionFooter from '../section-footer'
+import TabsProvider from '@/context/home/tabs-context'
 
 interface IProps {
   infoList: ITabs | null
@@ -39,4 +40,4 @@ const SectionTabsRoom: FC<IProps> = memo(({ infoList }) => {
   )
 })
 
-export default SectionTabsRoom
+export default TabsProvider(SectionTabsRoom)

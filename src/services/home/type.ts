@@ -1,5 +1,6 @@
 export interface IHomeInfoItem {
   id: string
+  _id: string
   picture_url: string
   verify_info: any
   name: string
@@ -29,6 +30,7 @@ interface IDestAddress {
 interface ITabsList {
   bottom_info: any
   id: string
+  _id: string
   image_url: string
   lat: number
   lng: number
