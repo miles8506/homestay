@@ -6,6 +6,7 @@ interface IProps extends ThemePropsType {
 }
 
 export const RoomItemWrapper = styled.div<IProps>`
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -112,6 +113,48 @@ export const RoomItemWrapper = styled.div<IProps>`
 
     .review-count {
       padding-left: 3px;
+    }
+  }
+
+  .indicator-list {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    z-index: 9;
+  }
+
+  .dot-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .dot-bar {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100px;
+    overflow: hidden;
+  }
+
+  .dot-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: 14.28%;
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      background-color: #fff;
+      border-radius: 50%;
+    }
+
+    .active {
+      width: 8px;
+      height: 8px;
     }
   }
 `

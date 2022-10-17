@@ -1,4 +1,4 @@
-import { memo, FC, useRef } from 'react'
+import { memo, FC, useRef, useState } from 'react'
 
 import { IEntireRoomInfoItem } from '@/services'
 
@@ -8,38 +8,67 @@ import Pictures from '@/components/entire/rooms/cpns/pictures'
 import ArrowLeftIcon from '@/assets/svg/arrow-left-icon'
 import ArrowRightIcon from '@/assets/svg/arrow-right-icon'
 import { CarouselRef } from 'antd/lib/carousel'
+import Indicator from '@/base-ui/indicator'
+import classNames from 'classnames'
 
 interface IProps {
   item: IEntireRoomInfoItem
+  handleNavigate?: (detail: IEntireRoomInfoItem) => void
 }
 
-const RoomItem: FC<IProps> = memo(({ item }) => {
+const RoomItem: FC<IProps> = memo(({ item, handleNavigate }) => {
   const carouselRef = useRef<CarouselRef>(null)
+  const [currentIndex, setCurrentIndex] = useState(0)
 
-  const handleLeftClick = () => {
+  const handleLeftClick = (e: Event) => {
+    e.stopPropagation()
     carouselRef.current?.prev()
+    setCurrentIndex((prev) =>
+      prev === 0 ? (item.picture_urls as string[]).length - 1 : prev - 1
+    )
   }
 
-  const handleRightClick = () => {
+  const handleRightClick = (e: Event) => {
+    e.stopPropagation()
     carouselRef.current?.next()
+    setCurrentIndex((prev) =>
+      prev === (item.picture_urls as string[]).length - 1 ? 0 : prev + 1
+    )
   }
 
   return (
-    <RoomItemWrapper textColor={item.star_rating_color}>
+    <RoomItemWrapper textColor={item.star_rating_color} onClick={() => handleNavigate && handleNavigate(item)}>
       <div className="room-img-cover">
         <div className="wrap">
           {item.picture_urls ? (
-            <div className='picture-wrap'>
+            <div className="picture-wrap">
               <div className="control">
-                <div className="left-cover" onClick={handleLeftClick}>
+                <div className="left-cover" onClick={(e: any) => handleLeftClick(e)}>
                   <span className="prev-btn">
                     <ArrowLeftIcon width={30} height={30} />
                   </span>
                 </div>
-                <div className="right-cover" onClick={handleRightClick}>
+                <div className="right-cover" onClick={(e: any) => handleRightClick(e)}>
                   <span className="next-btn">
                     <ArrowRightIcon width={30} height={30} />
                   </span>
+                </div>
+              </div>
+              <div className="indicator-list">
+                <div className="dot-wrap">
+                  <div className="dot-bar">
+                    <Indicator currentIndex={currentIndex}>
+                      {item.picture_urls.map((item, index) => (
+                        <span key={item} className="dot-item">
+                          <span
+                            className={classNames('dot', {
+                              active: currentIndex === index
+                            })}
+                          ></span>
+                        </span>
+                      ))}
+                    </Indicator>
+                  </div>
                 </div>
               </div>
               <Pictures picturesUrl={item.picture_urls} ref={carouselRef} />
