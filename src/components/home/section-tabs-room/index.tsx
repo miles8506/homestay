@@ -4,7 +4,7 @@ import { ITabs } from '@/services'
 import { useTabsContext } from '@/context/home/tabs-context'
 
 import { SectionTabsRoomWrapper } from './style'
-import RoomList from '../../common/room-list'
+import RoomList from '../room-list'
 import SectionHeader from '../section-header'
 import Tabs from '../tabs'
 import SectionFooter from '../section-footer'
