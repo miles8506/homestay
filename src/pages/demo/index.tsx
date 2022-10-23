@@ -1,31 +1,28 @@
-import { memo, useState } from 'react'
-
-import Indicator from '@/base-ui/indicator'
+import { memo, useState, useRef } from 'react'
+import { CSSTransition, SwitchTransition } from 'react-transition-group'
+import { Foo } from './style'
 
 const Demo = memo(() => {
-  const btns = ['aaa', 'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg']
-  const [currentIndex, setCurrentIndex] = useState(0)
-
-  const handlePrevClick = () => {
-    setCurrentIndex(prev => prev === 0 ? btns.length - 1 : prev - 1)
-  }
-
-  const handleNextClick = () => {
-    setCurrentIndex(prev => prev === btns.length - 1 ? 0 : prev + 1)
-  }
+  const [state, setState] = useState(false);
+  const helloRef = useRef<any>(null);
+  const goodbyeRef = useRef(null);
+  const nodeRef = state ? goodbyeRef : helloRef;
 
   return (
-    <div>
-      <button onClick={handlePrevClick}>上一個</button>
-      <button onClick={handleNextClick}>下一個</button>
-      <Indicator currentIndex={currentIndex}>
-        {
-          btns.map(item => (
-            <button key={item}>{item}</button>
-          ))
-        }
-      </Indicator>
-    </div>
+    <Foo>
+   <SwitchTransition>
+     <CSSTransition
+       key={state ? "Goodbye, world!" : "Hello, world!"}
+       addEndListener={() => console.log(123)}
+          classNames='fade'
+      timeout={1000}
+     >
+       <button onClick={() => setState(state => !state)}>
+         {state ? "Goodbye, world!" : "Hello, world!"}
+       </button>
+     </CSSTransition>
+   </SwitchTransition>
+    </Foo>
   )
 })
 

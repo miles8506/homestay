@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const DetailInfoWrapper = styled.div`
+  position: relative;
   display: flex;
   height: 600px;
 
@@ -37,6 +38,7 @@ export const DetailInfoWrapper = styled.div`
 
   .cover {
     background-color: #000;
+    cursor: pointer;
   }
 
   .picture img {
@@ -60,5 +62,17 @@ export const DetailInfoWrapper = styled.div`
     &:hover img {
       transform: scale(1.1);
     }
+  }
+
+  .display-btn {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    line-height: 22px;
+    padding: 6px 15px;
+    background-color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 9;
   }
 `

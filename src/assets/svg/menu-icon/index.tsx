@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import styleStrToObject from '@/utils/styleStrToObject'
 
 const MenuIcon = memo(() => {
