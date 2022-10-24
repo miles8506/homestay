@@ -3,8 +3,14 @@ import styled from "styled-components"
 import { ThemePropsType } from "@/theme"
 
 export const FilterBarWrapper = styled.div<ThemePropsType>`
+  position: fixed;
+  top: 80px;
+  left: 0;
+  right: 0;
   padding: 8px 16px;
   border-bottom: 1px solid #f2f2f2;
+  background-color: #fff;
+  z-index: 9999;
 
   .filter-list {
     display: flex;
